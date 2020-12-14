@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      height: 100vh;
+      align-items: center;
+      background-image: url("weather.jpg");
+      background-size: cover;
+      background-position: top center;
+      color:#fff;
+      font-family: sans-serif;
+  }
+  .location,.temperature
+  {
+      height:30vh;
+      align-items: center;
+    /*  display: flex;
+      width:50%;*/
+      justify-content: space-around;
+  }
+  .temperature
+  {
+      flex-direction: column;
+  }
+  .degree-section
+  {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+  }
+  .degree-section span
+  {
+      margin: 10px;
+      font-size: 30px;
+  }
+  .degree-section h2{
+      font-size: 40px;
+  }
+  .feels
+  {
+      font-size: x-large;
+  }
+  .humidity
+  {
+      font-size: x-large;
+  }
