@@ -22,6 +22,8 @@
     /*  display: flex;
       width:50%;*/
       justify-content: space-around;
+      font-weight: bold;
+      font-size: xx-large;
   }
   .temperature
   {
@@ -43,9 +45,17 @@
   }
   .feels
   {
-      font-size: x-large;
+      font-size: xx-large;
   }
   .humidity
   {
-      font-size: x-large;
+      font-size: xx-large;
+  }
+  .temperature-description
+  {
+      font-size: xx-large;
+  }
+  .img
+  {
+      display: block;
   }

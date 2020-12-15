@@ -7,10 +7,12 @@ window.addEventListener("load", () => {
     let Humidity = document.querySelector('.humidity');
     let locationTimezone = document.querySelector('.location-timezone');
     let temperatureSection = document.querySelector('.temperature');
+    let tempIcon = document.getElementById("temp-icon");
     let temperatureSpan = document.querySelector('.temperature span');
 
 
     if (navigator.geolocation) {
+        console.log('geolocation available')
         navigator.geolocation.getCurrentPosition(position => {
             long = position.coords.longitude;
             lat = position.coords.latitude;
@@ -25,13 +27,35 @@ window.addEventListener("load", () => {
                 .then(data => {
                     console.log(data);
                     const { temp, feels_like, humidity } = data.main;
-                    const { description, icon } = data.weather[0];
+                    const { id, description, icon } = data.weather[0];
                     const location = data.name;
                     temperatureDegree.textContent = Math.floor(temp - 273) + '°';
                     feelsLike.textContent = Math.floor(feels_like - 273) + '°C';
                     temperatureDescription.textContent = description;
                     locationTimezone.textContent = location;
                     Humidity.textContent = humidity + '%';
+
+                    if (id < 250) {
+                        tempIcon.src = './icons/storm.svg';
+                    }
+                    else if (id < 350) {
+                        tempIcon.src = './icons/drizzle.svg';
+                    }
+                    else if (id < 550) {
+                        tempIcon.src = './icons/rain.svg';
+                    }
+                    else if (id < 650) {
+                        tempIcon.src = './icons/snow.svg';
+                    }
+                    else if (id <= 800) {
+                        tempIcon.src = './icons/atmosphere.svg';
+                    }
+                    /* else if (id===800){
+                       tempIcon.src = './icons/sun.svg' ;
+                     }*/
+                    else if (id > 800) {
+                        tempIcon.src = './icons/clouds.svg';
+                    }
 
                     let farenhite = ((temp - 273) * 9) / 5 + 32;
                     let now = new Date();
@@ -54,13 +78,14 @@ window.addEventListener("load", () => {
 
 
     }
+    else alert('geolocation not available');
 
-    /* function setIcons(icon, iconID) {
-         const skycons = new Skycons({ color: "white" });
-         const currentIcon = icon.replace(/-/g, "_").toUpperCase();
-         skycons.play();
-         return skycons.set(iconID, Skycons[currentIcon]);
-     }*/
+    function setIcons(icon, iconID) {
+        const skycons = new Skycons({ color: "white" });
+        const currentIcon = icon.replace(/-/g, "_").toUpperCase();
+        skycons.play();
+        return skycons.set(iconID, Skycons[currentIcon]);
+    }
     function dateBuilder(d) {
         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
